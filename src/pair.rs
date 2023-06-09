@@ -37,7 +37,7 @@ fn main() {
     }
     // Print what the target address is
     println!("Pairing with {target}, specify a different target if necessary. Pass -h for more info.");
-    
+
     // Wait until a device is connected by USB
     let mut device = None;
     loop {
@@ -106,7 +106,8 @@ fn main() {
                     let res = res.text().unwrap();
                     let res: serde_json::Value = match serde_json::from_str(res.as_str()) {
                         Ok(res) => res,
-                        Err(_) => {
+                        Err(err) => {
+                            println!("Error parsing response: {:?}", err);
                             println!("Error parsing response, pair failed");
                             continue;
                         }

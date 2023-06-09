@@ -40,6 +40,7 @@ async fn main() {
     // Test to make sure that usbmuxd is running
     if rusty_libimobiledevice::idevice::get_devices().is_err() {
         // usbmuxd is not running
+        log::error!("error: {:#?}", rusty_libimobiledevice::idevice::get_devices().unwrap_err());
         log::error!("There is no muxer running! Start one like usbmuxd or netmuxd.");
         std::process::exit(1);
     }

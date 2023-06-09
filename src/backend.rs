@@ -192,6 +192,7 @@ impl Backend {
 
     pub fn write_pairing_file(&self, plist: String, udid: &String) -> Result<(), ()> {
         let path = format!("{}/{}.plist", &self.plist_storage, &udid);
+        println!("Writing pairing file to {}", path);
         let mut file = std::fs::File::create(&path).unwrap();
         match std::io::Write::write_all(&mut file, plist.as_bytes()) {
             Ok(_) => Ok(()),
